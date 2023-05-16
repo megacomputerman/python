@@ -58,3 +58,60 @@ numeros_primos = {2, 3, 5, 7}
 ###########################################################
 pessoa = {"nome": "Ana", "idade": 25, "cidade": "São Paulo"}
 
+
+###########################################################
+# Conversões
+###########################################################
+
+#int -> float
+###########################################################
+x_float = float(x)
+print(x_float)
+
+#float -> int
+###########################################################
+x_int = int(x_float)
+print(x_int)
+
+#float -> string
+###########################################################
+my_string = str(x_float)
+print(my_string)
+
+#string -> boolean
+###########################################################
+my_string = "True"
+x_boolean = bool(my_string)
+print(x_boolean)
+
+#operações matemáticas
+###########################################################
+a = 5
+b = 3
+#Adição
+resultado = a + b
+print(resultado)
+
+#Subtração
+resultado = a - b
+print(resultado)
+
+#Multiplicação
+resultado = a * b
+print(resultado)
+
+#Divisão
+resultado = a / b
+print(resultado)
+
+#Divisão com resultado inteiro
+resultado = a // b
+print(resultado)
+
+#Resto da divisão (%):
+resultado = a % b
+print(resultado) 
+
+#Potenciação (**):
+resultado = a ** b
+print(resultado)
