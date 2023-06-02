@@ -44,7 +44,6 @@ print(i)
 # O continue pula uma instrução do loop
 # no exemplo abaixo o continue é usado para pular quando o numero for impar, 
 # imprimindo apenas os numeros pares
-print("Exemplo de continue:")
 for i in range(11):
     if i % 2 != 0:
         continue
@@ -55,3 +54,35 @@ for nome in nomes:
     if nome == "jack":
         continue
     print(nome)
+
+#Exemplo do pass, quando você tem uma condição verdadeira
+# e não deseja adicionar nenhum código nela
+print("Exemplo de pass:")
+valor = 10;
+if valor > 5:
+    pass
+else:
+    print("Valor menor ou igual a 5")
+
+#Usado para tratamento de exceções
+print("Exemplo de try:")
+try:
+    ret = 10/0 #erro na divisão
+except ZeroDivisionError:
+    print("Erro: ocorreu uma divisão por zero")
+
+try:
+    lista = [1, 2, 3]
+    print(lista[5])
+except Exception as e:
+    print("Erro: ", str(e))
+    
+    
+try:
+    file = open("file.txt", "r")
+    data = file.read()
+    file.close()
+except Exception as e:
+    print("Erro: ", str(e))
+else:
+    print(data)
