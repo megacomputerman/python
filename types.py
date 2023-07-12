@@ -37,6 +37,7 @@ mensagem = 'Olá, mundo!'
 ###########################################################
 # Listas
 ###########################################################
+# Use lista para resolver problemas que precisam de dados ordenados
 numeros = [1, 2, 3, 4, 5]
 nomes = ["Maria", "João", "Carlos"]
 
@@ -50,6 +51,17 @@ cores = ("vermelho", "azul", "verde")
 ###########################################################
 # Conjuntos (set)
 ###########################################################
+# Use conjuntos quando problema envolve identificar se um elemento pertence a alguma coisa
+# se precisar usar operações de união, intersecao, etc.
+#
+# Diferença entre lista e conjuntos:
+# - A ordem dos elementos, a lista mantem a ordem dos elementos conforme são inseridos.
+# - Elementos duplicados, a lista permite elementos duplicados enquanto que os conjuntos não, cada elemento é único.
+# - Indexação, na lista é possível acessar um elemento específico pelo indice, no conjunto não suporta.
+# - No conjunto é possível apenas adicionar ou remover elementos, não pode dodificalos, na lista é possível, add, remover e modificar.
+# - Conjuntos usam mais memória que lista
+# - A Eficiência para verificação de pertencimento é maior no conjunto do que na lista, o tempo para verificar no conjunto é constante,
+#   independentemente do tamanho do conjunto, já na lista é necessário percorrer todos os elementos da lista.
 animais = {"cachorro", "gato", "pássaro"}
 numeros_primos = {2, 3, 5, 7}
 
