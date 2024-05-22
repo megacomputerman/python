@@ -13,6 +13,20 @@ stages:
     steps:
     - script: pip install boto3
       displayName: 'Install boto3'
-    
-    - script: python -c "import boto3; print('Boto3 installed successfully')"
-      displayName: 'Test boto3 installation'
+
+- stage: TestBoto3Installation
+  dependsOn: InstallBoto3
+  
+  jobs:
+  - deployment: TestBoto3Installation
+    displayName: 'Test boto3 installation'
+    environment: 'aprovar_fota'
+    strategy:
+      runOnce:
+        deploy:               
+          steps:
+          - script: pip install boto3
+            displayName: 'Install boto3'
+
+          - script: python -c "import boto3; print('Boto3 installed successfully')"
+            displayName: 'Test boto3 installation'
