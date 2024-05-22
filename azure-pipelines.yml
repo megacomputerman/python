@@ -13,10 +13,6 @@ stages:
     steps:
     - script: pip install boto3
       displayName: 'Install boto3'
-
-- stage: TestBoto3Installation
-  dependsOn: InstallBoto3
-  jobs:
   - job: TestBoto3Installation
     steps:
     - script: python -c "import boto3; print('Boto3 installed successfully')"
