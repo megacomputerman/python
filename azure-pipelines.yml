@@ -14,9 +14,20 @@ stages:
     - script: pip install boto3
       displayName: 'Install boto3'
 
+    - task: CmdLine@2
+      displayName: 'Criar artefato'
+      inputs:
+        script: |
+          echo "informações do sw" > sw_info.txt
+          cat sw_info.txt
+
+    - task: PublishPipelineArtifact@1
+      inputs:
+        targetPath: $(System.DefaultWorkingDirectory)/sw_info.txt
+        artifactName: sw_info.txt
+
 - stage: TestBoto3Installation
-  dependsOn: InstallBoto3
-  
+  dependsOn: InstallBoto3  
   jobs:
   - deployment: TestBoto3Installation
     displayName: 'Test boto3 installation'
