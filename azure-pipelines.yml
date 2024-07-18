@@ -6,6 +6,9 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
+variables:
+  project_description: "aaaa"
+
 stages:
 - stage: InstallBoto3
   jobs:
@@ -19,7 +22,7 @@ stages:
         echo "##vso[task.setvariable variable=project_description]$description"
 
     - task: CmdLine@2
-      displayName:  "Compilando o software: $(project_description)"
+      displayName: Compilando o software $(project_description)
       inputs:
         script: |
           echo "info: $(project_description)"
