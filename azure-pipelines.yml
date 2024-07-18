@@ -19,7 +19,7 @@ stages:
         echo "##vso[task.setvariable variable=project_description;]compilando o software: $description"
 
     - task: CmdLine@2
-      displayName: $(project_description)
+      displayName:  '${{ variables.project_description }}'
       inputs:
         script: |
           echo "info: $(project_description)"
