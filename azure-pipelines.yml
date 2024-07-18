@@ -6,6 +6,9 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
+variables:
+  - name: project_description
+    value: default
 
 stages:
 - stage: InstallBoto3
@@ -24,6 +27,7 @@ stages:
       inputs:
         script: |
           echo "info: $(project_description)"
+          echo "info: ${{ variables.project_description }}"
 
     - task: CmdLine@2
       displayName: 'Criar artefato'
