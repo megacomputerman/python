@@ -14,6 +14,16 @@ stages:
     - script: pip install boto3
       displayName: 'Install boto3'
 
+    - bash: |
+        export description="s650 - open"
+        echo "##vso[task.setvariable variable=project_description;]compilando o software: $description"
+
+    - task: CmdLine@2
+      displayName: $(project_description)
+      inputs:
+        script: |
+          echo "info: $(project_description)"
+
     - task: CmdLine@2
       displayName: 'Criar artefato'
       inputs:
