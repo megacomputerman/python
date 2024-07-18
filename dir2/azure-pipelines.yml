@@ -1,0 +1,151 @@
+trigger:
+  branches:
+    include:
+      - master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+  stages:
+    #1
+    - stage: config 
+      displayName: 'Gerenciador de instancias'
+      jobs:
+      - job: job1
+        displayName: 'Processo de instâncias da AWS'
+        steps:
+        - task: UsePythonVersion@0
+          displayName: 'Configura a versão do Python'
+          inputs:
+            versionSpec: '3.x'
+            addToPath: true
+    
+        - task: CmdLine@2
+          displayName: 'Instala dependências'
+          inputs:
+            script: |
+             echo "Ligando a build"
+             #pip install -r robobuild/requirements.txt  
+    
+        - task: CmdLine@2
+          displayName: 'Liga e conectar na instancia'
+          inputs:
+            script: |
+              #TODO ligar e teste para conectar
+              echo "Ligando a build"
+    
+        - task: CmdLine@2
+          displayName: 'Analisa armazenamento'
+          inputs:
+            script: |
+              #TODO chamar python e analisar retorno
+              echo "Armazenameno ok"
+    
+    #2
+    - stage: build
+      displayName: 'Gerenciador de build'
+      dependsOn: config
+      jobs:
+      - job: job1
+        displayName: 'Processo de compilação'
+        steps:
+        - task: UsePythonVersion@0
+          displayName: 'Configura a versão do Python'
+          inputs:
+            versionSpec: '3.x'
+            addToPath: true
+    
+        - task: CmdLine@2
+          displayName: 'Instala bibliotecas'
+          inputs:
+            script: |
+              python -m pip install --upgrade pip
+              pip install -r requirements.txt
+    
+        - task: CmdLine@2
+          displayName: 'Recupera arquivo de configuração'
+          inputs:
+            script: |
+              echo "ok"
+    
+        - task: CmdLine@2
+          displayName: 'Compila o Software'
+          inputs:
+            script: |
+              echo "ok"   
+     
+        - task: CmdLine@2
+          displayName: 'Testes'
+          inputs:
+            script: |
+              #TODO executar e capturar o check_build
+              echo "Testes"
+              #validation/check_build.sh
+    
+    #3
+    - stage: ota
+      displayName: 'Gerenciador de OTA'
+      dependsOn: build
+      jobs:
+      - job: job1
+        displayName: 'Processo de Fota'
+        steps:
+        - task: UsePythonVersion@0
+          displayName: 'Configura a versão do Python'
+          inputs:
+            versionSpec: '3.x'
+            addToPath: true
+    
+        - task: CmdLine@2
+          displayName: 'Instala bibliotecas'
+          inputs:
+            script: |
+              echo "install ok"
+              #python -m pip install --upgrade pip
+              #pip install -r requirements.txt
+    
+        - task: CmdLine@2
+          displayName: 'Cria e envia ota para aws'
+          inputs:
+            script: |
+              #chamar aqui
+              echo "feito upload"
+    
+        - task: CmdLine@2
+          displayName: 'Aplica as configurações no atualizador'
+          inputs:
+            script: |
+              echo "Configurações do ota ok"
+    #4
+    - stage: notifica
+      displayName: 'Gerenciador de Notificações'
+      jobs:
+      - job: job1
+        displayName: 'Processo de Fota'
+        steps:
+        - task: UsePythonVersion@0
+          displayName: 'Configura a versão do Python'
+          inputs:
+            versionSpec: '3.x'
+            addToPath: true
+    
+        - task: CmdLine@2
+          displayName: 'Instala bibliotecas'
+          inputs:
+            script: |
+              echo "install ok"
+              #python -m pip install --upgrade pip
+              #pip install -r requirements.txt
+    
+        - task: CmdLine@2
+          displayName: 'Notifica teams'
+          inputs:
+            script: |
+              #chamar aqui
+              echo "Teams mensagem ok"
+    
+        - task: CmdLine@2
+          displayName: 'Notifica email'
+          inputs:
+            script: |
+              echo "Notifica ok"
