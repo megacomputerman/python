@@ -16,10 +16,10 @@ stages:
 
     - bash: |
         export description="s650 - open"
-        echo "##vso[task.setvariable variable=project_description;]compilando o software: $description"
+        echo "##vso[task.setvariable variable=project_description;]$description"
 
     - task: CmdLine@2
-      displayName:  '${{ variables.project_description }}'
+      displayName:  "Compilando o software: $(project_description)"
       inputs:
         script: |
           echo "info: $(project_description)"
